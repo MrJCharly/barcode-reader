@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>3. Cantidades</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  Ingresar personal que retira los productos y las cantidades.
+
+  <ion-list inset>
+    <!-- Cantidad -->
+    <ion-item>
+      <ion-label>Cantidad</ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+
+    <!-- Personal -->
+    <ion-item>
+      <ion-label>Personal</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  Firma del personal.
+  <canvas></canvas>
+</ion-content>
+
+<ion-footer>
+  <ion-buttons>
+    <button ion-button block (tap) = "onTap()">Siguiente</button>
+  </ion-buttons>
+</ion-footer>

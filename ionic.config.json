@@ -1,5 +1,7 @@
 {
   "name": "qr-reader",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

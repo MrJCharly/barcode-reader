@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { BarcodePage } from '../barcode/barcode';
 
 @Component({
   selector: 'page-home',
@@ -11,4 +12,11 @@ export class HomePage {
 
   }
 
+  onTap() {
+    this.goToNextPage();
+  }
+
+  goToNextPage() {
+    this.navCtrl.push(BarcodePage);
+  }
 }
