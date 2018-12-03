@@ -17,7 +17,7 @@ export class BarcodePage {
 
   ionViewDidLoad() {
     this.barcodeScanner.scan().then(barcodeData => {
-      console.log('Barcode data', barcodeData);
+      this.goToNextPage();
     }).catch(err => {
       console.log('Error', err);
     });
