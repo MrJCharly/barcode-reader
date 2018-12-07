@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { BarcodePage } from '../barcode/barcode';
+import { QuantityPage } from '../quantity/quantity';
 
 @Component({
   selector: 'page-home',
@@ -17,6 +17,6 @@ export class HomePage {
   }
 
   goToNextPage() {
-    this.navCtrl.push(BarcodePage);
+    this.navCtrl.push(QuantityPage);
   }
 }

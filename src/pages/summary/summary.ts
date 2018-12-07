@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { QuantityPage } from '../quantity/quantity';
 
 @IonicPage()
 @Component({
@@ -20,6 +20,6 @@ export class SummaryPage {
   }
 
   goToNextPage() {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.push(QuantityPage);
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BarcodePage } from '../barcode/barcode';
 import { SummaryPage } from '../summary/summary';
 
 @IonicPage()
@@ -17,6 +18,10 @@ export class QuantityPage {
 
   onTap() {
     this.goToNextPage();
+  }
+
+  onAddItem() {
+    this.navCtrl.push(BarcodePage);
   }
 
   goToNextPage() {

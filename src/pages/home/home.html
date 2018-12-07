@@ -1,11 +1,28 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>
-      1. Inicio
+      Ingreso
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding (tap) = "onTap()">
-  Tocar la pantalla para iniciar.
+<ion-content padding>
+  <ion-list inset>
+    <!-- Usuario -->
+    <ion-item>
+      <ion-label color="primary" stacked>Usuario</ion-label>
+      <ion-input type="email" placeholder="Ingrese su usuario"></ion-input>
+    </ion-item>
+
+    <!-- Password -->
+    <ion-item>
+      <ion-label color="primary" stacked>Contraseña</ion-label>
+      <ion-input type="email" placeholder="Ingrese su constraseña"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button block (tap) = "onTap()">Acceder</button>
 </ion-content>

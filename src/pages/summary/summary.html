@@ -1,22 +1,20 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>4. Resumen</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Finalizar</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <button ion-item>Fecha</button>
-    <button ion-item>Hora</button>
-    <button ion-item>Producto</button>
-    <button ion-item>Cantidad</button>
-    <button ion-item>Personal</button>
-    <button ion-item>Usuario</button>
-  </ion-list>
+  <h4>Firma</h4>
+  <button ion-button block>Borrar</button>
 </ion-content>
 
 <ion-footer>
   <ion-buttons>
-    <button ion-button block (tap) = "onTap()">Finalizar</button>
+    <button ion-button block color="secondary" (tap) = "onTap()">Finalizar</button>
+    <button ion-button block color="danger" (tap) = "onTap()">Cancelar</button>
   </ion-buttons>
 </ion-footer>

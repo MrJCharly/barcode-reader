@@ -1,28 +1,52 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>3. Cantidades</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>H&S</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  Ingresar personal que retira los productos y las cantidades.
+  <h3>Sucursal Carrefour Norte</h3>
 
   <ion-list inset>
-    <!-- Cantidad -->
-    <ion-item>
-      <ion-label>Cantidad</ion-label>
-      <ion-input type="number"></ion-input>
-    </ion-item>
-
     <!-- Personal -->
     <ion-item>
-      <ion-label>Personal</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label color="primary" stacked>Usuario</ion-label>
+      <ion-input type="email" placeholder="Buscar usuario"></ion-input>
     </ion-item>
   </ion-list>
 
-  Firma del personal.
-  <canvas></canvas>
+  <button ion-button block (tap) = "onAddItem()">Agregar elemento</button>
+
+  <!-- Items -->
+  <ion-grid>
+    <ion-row style="vertical-align:middle;">
+      <ion-col><button ion-button color="dark" round>-</button></ion-col>
+      <ion-col>Casco</ion-col>
+      <ion-col><button ion-button color="dark" round>+</button></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col><button ion-button color="dark" round>-</button></ion-col>
+      <ion-col>Guantes</ion-col>
+      <ion-col><button ion-button color="dark" round>+</button></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col><button ion-button color="dark" round>-</button></ion-col>
+      <ion-col>Audífonos</ion-col>
+      <ion-col><button ion-button color="dark" round>+</button></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col><button ion-button color="dark" round>-</button></ion-col>
+      <ion-col>Zapatos</ion-col>
+      <ion-col><button ion-button color="dark" round>+</button></ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
 
 <ion-footer>
