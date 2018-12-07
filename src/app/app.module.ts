@@ -6,28 +6,34 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 import { BarcodePage } from '../pages/barcode/barcode';
 import { QuantityPage } from '../pages/quantity/quantity';
 import { SummaryPage } from '../pages/summary/summary';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { GlobalProvider } from '../providers/global/global';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    LoginPage,
     BarcodePage,
     QuantityPage,
     SummaryPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
+    LoginPage,
     BarcodePage,
     QuantityPage,
     SummaryPage
@@ -36,7 +42,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BarcodeScanner
+    BarcodeScanner,
+    GlobalProvider
   ]
 })
 export class AppModule {}
