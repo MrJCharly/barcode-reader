@@ -9,7 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { BarcodePage } from '../pages/barcode/barcode';
 import { QuantityPage } from '../pages/quantity/quantity';
-import { SummaryPage } from '../pages/summary/summary';
+import { SucursalesesPage } from '../pages/sucursaleses/sucursaleses';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { GlobalProvider } from '../providers/global/global';
@@ -22,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginPage,
     BarcodePage,
     QuantityPage,
-    SummaryPage
+    SucursalesesPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginPage,
     BarcodePage,
     QuantityPage,
-    SummaryPage
+    SucursalesesPage
   ],
   providers: [
     StatusBar,

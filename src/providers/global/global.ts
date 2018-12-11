@@ -5,17 +5,29 @@ import config from '../../config';
 @Injectable()
 export class GlobalProvider {
   public token;
+  public endpoints;
+  public User;
+  public branches;
 
-  constructor(    
+  constructor(
     public http: HttpClient) { }
 
-  getUrl() {
-    return config.base_url + config.intranet + '/';
+  getUrl(endpoint) {
+    return config.base_url + config.intranet + '/' + endpoint;
   }
 
   login(email, password) {
-    let url = this.getUrl() + 'users/gettoken';
+    let url = this.getUrl('users/gettoken');
     let params = {email, password};
+
+    return this.http.post(url, params);
+  }
+
+  loadbranches() {
+    let endpoint = this.endpoints.getUserBranches;
+    let url = this.getUrl(endpoint);
+    let params = {uuid: this.token};
+
     return this.http.post(url, params);
   }
 }
