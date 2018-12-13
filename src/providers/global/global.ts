@@ -2,12 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import config from '../../config';
 
+// Contenedor de datos y funciones de uso general a nivel de aplicación.
 @Injectable()
 export class GlobalProvider {
+  // Token de usuario.
   public token;
+  // Lista de endpoints.
   public endpoints;
+  // Usuario actual.
   public User;
+  // Lista de branches del usuario actual.
   public branches;
+  // Branch actual.
+  public curr_branch;
 
   constructor(
     public http: HttpClient) { }

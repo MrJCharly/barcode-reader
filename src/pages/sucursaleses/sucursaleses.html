@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of global.branches">
+    <button ion-item *ngFor="let item of global.branches" (click)="onSelectBranch(item)">
       <ion-label>{{item.Branch.name}}</ion-label>
     </button>
   </ion-list>

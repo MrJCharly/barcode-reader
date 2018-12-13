@@ -1,0 +1,23 @@
+//$toolbar-background: map-get($colors, primary);
+
+theme-blue {
+  // From here to the next checkpoint is for theming the header - toolbar navbar but not the main content
+  transition: all 1.1s ease;
+  background-color: #1E88E5;
+  p,
+  .toolbar-title,
+  .bar-button-default,
+  body,
+  div {
+    transition: all 1.1s ease;
+    color: black;
+  }
+  .onboard {
+    border-color: #1E88E5 !important;
+  }
+  .toolbar-background,
+  .toggle-checked {
+    transition: all 1.1s ease;
+    background-color: #1E88E5 !important;
+  }
+}

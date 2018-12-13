@@ -1,26 +1,20 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GlobalProvider } from "../../providers/global/global";
-import { ItemsPage } from '../items/items';
 
+// Seleccionar ítems para generar un pedido.
 @IonicPage()
 @Component({
-  selector: 'page-sucursaleses',
-  templateUrl: 'sucursaleses.html',
+  selector: 'page-items',
+  templateUrl: 'items.html',
 })
-export class SucursalesesPage {
+export class ItemsPage {
 
-  constructor (
+  constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public global: GlobalProvider) {
   }
 
   ionViewDidLoad() { }
-
-  // Seleccionar branch actual y redirigir a página siguiente.
-  onSelectBranch(item) {
-    this.global.curr_branch = item.Branch;
-    this.navCtrl.push(ItemsPage);
-  }
 }

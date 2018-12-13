@@ -7,9 +7,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { BarcodePage } from '../pages/barcode/barcode';
-import { QuantityPage } from '../pages/quantity/quantity';
 import { SucursalesesPage } from '../pages/sucursaleses/sucursaleses';
+import { ItemsPage } from '../pages/items/items';
+import { BarcodePage } from '../pages/barcode/barcode';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { GlobalProvider } from '../providers/global/global';
@@ -20,9 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     MyApp,
     HomePage,
     LoginPage,
+    SucursalesesPage,
+    ItemsPage,
     BarcodePage,
-    QuantityPage,
-    SucursalesesPage
   ],
   imports: [
     BrowserModule,
@@ -34,9 +34,9 @@ import { HttpClientModule } from '@angular/common/http';
     MyApp,
     HomePage,
     LoginPage,
+    SucursalesesPage,
+    ItemsPage,
     BarcodePage,
-    QuantityPage,
-    SucursalesesPage
   ],
   providers: [
     StatusBar,
