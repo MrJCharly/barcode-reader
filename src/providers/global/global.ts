@@ -15,6 +15,8 @@ export class GlobalProvider {
   public branches;
   // Branch actual.
   public curr_branch;
+  // True si se inició lectura de usuario.
+  public reading_user = false;
 
   constructor(
     public http: HttpClient) { }

@@ -1,19 +1,18 @@
-<ion-navbar>
-  <button ion-button menuToggle>
-    <ion-icon name="menu"></ion-icon>
-  </button>
-  <ion-title>
-    H&S
-  </ion-title>
-</ion-navbar>
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Preparar pedido
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 <ion-content padding>
   <h3>{{global.curr_branch.name}}</h3>
 
   <br/>
-  <button ion-button block>Identificar Usuario</button>
+  <button ion-button block (click)="getUserByBarcode()">Identificar Usuario</button>
   <button ion-button round block outline small>Ingreso manual de usuario</button>
-
+  <input />
   <br/>
   <ion-card>
     <ion-item>
