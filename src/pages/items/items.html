@@ -11,16 +11,26 @@
 
   <br/>
   <button ion-button block (click)="getUserByBarcode()">Identificar Usuario</button>
-  <button ion-button round block outline small>Ingreso manual de usuario</button>
-  <input />
+  <button ion-button round block outline small (click)="promptUsuario()">Ingreso manual de usuario</button>
+
   <br/>
-  <ion-card>
+  <ion-card *ngIf="user">
     <ion-item>
       <ion-avatar item-start>
         <ion-icon name="person"></ion-icon>
       </ion-avatar>
-      <h2>Juan Pérez</h2>
-      <p>DNI 25.165.474</p>
+      <h2>{{user.name}} {{user.last_name}}</h2>
+      <p>DNI {{user.identification_number}}</p>
+    </ion-item>
+  </ion-card>
+
+  <ion-card *ngIf="!user">
+    <ion-item>
+      <ion-avatar item-start>
+        <ion-icon name="person"></ion-icon>
+      </ion-avatar>
+      <h2>Usuario no identificado</h2>
+      <p></p>
     </ion-item>
   </ion-card>
 

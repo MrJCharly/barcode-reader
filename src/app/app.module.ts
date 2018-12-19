@@ -14,6 +14,7 @@ import { BarcodePage } from '../pages/barcode/barcode';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { GlobalProvider } from '../providers/global/global';
 import { HttpClientModule } from '@angular/common/http';
+import { UtilProvider } from '../providers/util/util';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
-    GlobalProvider
+    GlobalProvider,
+    UtilProvider
   ]
 })
 export class AppModule {}
