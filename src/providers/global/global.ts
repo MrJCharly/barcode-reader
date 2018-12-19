@@ -35,8 +35,8 @@ export class GlobalProvider {
 
   // Generar url a partir de un identificador de endpoint. El endpoint concreto
   // se obtiene desde el objeto this.endpoints que se recibe luego del login.
-  getUrlWithEndpoint(endpoint) {
-    let endpoint = this.endpoints[endpoint];
+  getUrlWithEndpoint(endpoint_name) {
+    let endpoint = this.endpoints[endpoint_name];
     return this.getUrl(endpoint);
   }
 

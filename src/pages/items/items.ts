@@ -20,9 +20,7 @@ export class ItemsPage {
     private util: UtilProvider,
     private global: GlobalProvider,
     private alertCtrl: AlertController) {
-      /*this.global.curr_branch = {
-        name: 'Test branch'
-      };*/
+      this.util.promptItemCode.bind(this);
   }
 
   ionViewDidLoad() { }
@@ -112,6 +110,21 @@ export class ItemsPage {
       this.util.showToast(error);
       loader.dismiss();
     });
+  }
+
+  // Iniciar lectura de código de barras de producto.
+  addItemByBarcode() {
+    this.global.reading_status = this.global.READING_PRODUCT;
+    this.startBarcodeReading();
+  }
+
+  // Buscar producto por código y agregarlo al listado.
+  addItemByCode() {
+    this.util.promptItemCode(this);
+  }
+
+  getItemByCode(code) {
+    console.log('GETITEMBYCODE');
   }
 
   // Redireccionar a la página BarcodePage para iniciar lectura.
