@@ -16,6 +16,8 @@ import { GlobalProvider } from '../providers/global/global';
 import { HttpClientModule } from '@angular/common/http';
 import { UtilProvider } from '../providers/util/util';
 
+import { SignaturePadComponent } from '../components/signature-pad/signature-pad';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -24,6 +26,7 @@ import { UtilProvider } from '../providers/util/util';
     SucursalesesPage,
     ItemsPage,
     BarcodePage,
+    SignaturePadComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { UtilProvider } from '../providers/util/util';
     SucursalesesPage,
     ItemsPage,
     BarcodePage,
+    SignaturePadComponent
   ],
   providers: [
     StatusBar,

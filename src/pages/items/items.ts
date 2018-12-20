@@ -25,6 +25,7 @@ export class ItemsPage {
     },
     qty: 1
   }];
+  signature = "SIGNATURE";
 
   constructor (
     private navCtrl: NavController,
@@ -153,4 +154,7 @@ export class ItemsPage {
     this.navCtrl.push(BarcodePage);
   }
 
+  onValueChange(value) {
+    console.log('NEW value ', value);
+  }
 }

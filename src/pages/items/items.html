@@ -52,4 +52,7 @@
     </ion-item>
   </ion-list>
 
+  <!-- -->
+  <signature-pad [signature]="signature" (onChangeEmitter)="onValueChange($event)"></signature-pad>
+  {{signature}}
 </ion-content>
