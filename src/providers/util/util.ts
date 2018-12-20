@@ -37,6 +37,31 @@ export class UtilProvider {
     return toast;
   }
 
+  // Ingresar código de usuario manualmente.
+  promptUsuario(ctx) {
+    const prompt = this.alertCtrl.create({
+      title: 'Ingresar usuario',
+      message: "Ingresar identificación de usuario",
+      inputs: [{
+        name: 'code',
+        placeholder: 'Código de usuario'
+      }],
+      buttons: [{
+        text: 'Buscar',
+        handler: data => {
+          if (!data.code) {
+            this.showToast({message: 'Ingresar un código de usuario.'});
+            return false;
+          }
+
+          ctx.getUserByCode(data.code);
+        }
+      }]
+    });
+
+    prompt.present();
+  }
+
   // Ingresar código de producto en forma manual en GlobalProvider.
   promptItemCode(ctx) {
     const prompt = this.alertCtrl.create({
@@ -63,4 +88,5 @@ export class UtilProvider {
 
     prompt.present();
   }
+
 }

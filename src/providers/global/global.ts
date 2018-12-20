@@ -68,6 +68,15 @@ export class GlobalProvider {
     return this.http.post(url, params);
   }
 
+  // Buscar producto por código.
+  getProductByCode(code) {
+    let url = this.getUrlWithEndpoint('getProductbyCode');
+    let params = {code, branch_id: this.curr_branch.id};
+    params = this.injectToken(params);
+
+    return this.http.post(url, params);
+  }
+
   // Inyectar token a un objeto como parámetro.
   injectToken(params) {
     return {uuid: this.token, ...params};

@@ -11,17 +11,27 @@ import { BarcodePage } from '../barcode/barcode';
   templateUrl: 'items.html',
 })
 export class ItemsPage {
-  code = '';
   user = null;
+  items = [{
+    product: {
+      id: 1,
+      name: 'Casco'
+    },
+    qty: 1
+  }, {
+    product: {
+      id: 1,
+      name: 'Guantes'
+    },
+    qty: 1
+  }];
 
   constructor (
     private navCtrl: NavController,
     private navParams: NavParams,
     private util: UtilProvider,
     private global: GlobalProvider,
-    private alertCtrl: AlertController) {
-      this.util.promptItemCode.bind(this);
-  }
+    private alertCtrl: AlertController) { }
 
   ionViewDidLoad() { }
 
@@ -57,15 +67,16 @@ export class ItemsPage {
   }
 
   onReadingProduct() {
-
+    let code = this.global.barcode_data.text;
+    this.getItemByCode(code);
   }
 
   onReadingCancel() {
-
+    // TBD
   }
 
   onReadingError() {
-    //this.code = 'Error';
+    // TBD
   }
 
   // Iniciar captura de código de barra de usuario.
@@ -76,34 +87,14 @@ export class ItemsPage {
 
   // Ingresar código de usuario manualmente.
   promptUsuario() {
-    const prompt = this.alertCtrl.create({
-      title: 'Ingresar usuario',
-      message: "Ingresar identificación de usuario",
-      inputs: [{
-        name: 'code',
-        placeholder: 'Código de usuario'
-      }],
-      buttons: [{
-        text: 'Buscar',
-        handler: data => {
-          if (!data.code) {
-            this.util.showToast({message: 'Ingresar un código de usuario.'});
-            return false;
-          }
-
-          this.getUserByCode(data.code);
-        }
-      }]
-    });
-
-    prompt.present();
+    this.util.promptUsuario(this);
   }
 
   // Buscar usuario por código y mostrar datos personales.
   getUserByCode(code) {
     let loader = this.util.getLoader();
 
-    this.global.getUserByCode(code).subscribe(data => {
+    this.global.getUserByCode(code).subscribe((data: any) => {
       this.user = data.response.data.records.User;
       loader.dismiss();
     }, error => {
@@ -118,13 +109,43 @@ export class ItemsPage {
     this.startBarcodeReading();
   }
 
-  // Buscar producto por código y agregarlo al listado.
+  // Ingresar código de producto.
   addItemByCode() {
     this.util.promptItemCode(this);
   }
 
+  // Buscar producto por código y agregarlo al listado de items.
   getItemByCode(code) {
-    console.log('GETITEMBYCODE');
+    let loader = this.util.getLoader();
+
+    this.global.getProductByCode(code).subscribe((data: any) => {
+      let product = data.response.data.records.Product;
+
+      if (!product) {
+        this.util.showToast({message: 'Producto inexistente.'});
+        loader.dismiss();
+        return;
+      }
+
+      this.items.push({
+        product,
+        qty: 1
+      });
+      console.log(data);
+      loader.dismiss();
+    }, error => {
+      this.util.showToast(error);
+      loader.dismiss();
+    });
+  }
+
+  setQty(item, qty) {
+    item.qty += qty;
+
+    // Eliminar elemento si cantidad <= 0.
+    if (item.qty <= 0) {
+      this.items.splice(this.items.indexOf(item), 1);
+    }
   }
 
   // Redireccionar a la página BarcodePage para iniciar lectura.
