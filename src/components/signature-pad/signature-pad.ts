@@ -1,22 +1,39 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
+import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
 @Component({
-  selector: 'signature-pad',
+  selector: 'draw-signature-pad',
   templateUrl: 'signature-pad.html'
 })
 export class SignaturePadComponent {
-  @Input() signature;
-  @Output() onChangeEmitter = new EventEmitter();
+  @Output() onSignatureChange = new EventEmitter();
+  @ViewChild(SignaturePad) signaturepad: SignaturePad;
+  is_drawing = false;
+  options = {
+    'minWidth': 2,
+    'canvasWidth': 400,
+    'canvasHeight': 200,
+    'backgroundColor': '#f6fbff',
+    'penColor': '#666a73'
+  };
 
   constructor() {}
 
-  ngOnInit() {}
+  onDrawStart() {
+    this.is_drawing = true;
+  }
 
-  onSignatureChange() {console.log('change');
+  onDrawComplete() {
+    this.is_drawing = false;
     this.updateSignature();
   }
 
   updateSignature() {
-    this.onChangeEmitter.emit(this.signature);
+    this.onSignatureChange.emit(this.signaturepad.toDataURL());
+  }
+
+  clear() {
+    this.signaturepad.clear();
+    this.updateSignature();
   }
 }

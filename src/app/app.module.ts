@@ -16,6 +16,7 @@ import { GlobalProvider } from '../providers/global/global';
 import { HttpClientModule } from '@angular/common/http';
 import { UtilProvider } from '../providers/util/util';
 
+import { SignaturePadModule } from 'angular2-signaturepad';
 import { SignaturePadComponent } from '../components/signature-pad/signature-pad';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { SignaturePadComponent } from '../components/signature-pad/signature-pad
   imports: [
     BrowserModule,
     HttpClientModule,
+    SignaturePadModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

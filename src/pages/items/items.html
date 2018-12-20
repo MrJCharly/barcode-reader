@@ -53,6 +53,5 @@
   </ion-list>
 
   <!-- -->
-  <signature-pad [signature]="signature" (onChangeEmitter)="onValueChange($event)"></signature-pad>
-  {{signature}}
+  <draw-signature-pad (onSignatureChange)="onValueChange($event)"></draw-signature-pad>
 </ion-content>

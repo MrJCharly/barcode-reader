@@ -1,4 +1,11 @@
 <!-- Generated template for the SignaturePadComponent component -->
 <div>
-  <input [(ngModel)]="signature" (change)="onSignatureChange()"/>
+  <ion-row [ngClass]="{'drawing-active': is_drawing}">
+    <ion-col></ion-col>
+    <ion-col>
+      <signature-pad [options]="options" (onBeginEvent)="onDrawStart()" (onEndEvent)="onDrawComplete()"></signature-pad>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <button ion-button full color="danger" (click)="clear()">Clear</button>
 </div>

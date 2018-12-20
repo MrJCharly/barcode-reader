@@ -155,6 +155,6 @@ export class ItemsPage {
   }
 
   onValueChange(value) {
-    console.log('NEW value ', value);
+    this.signature = value;
   }
 }
