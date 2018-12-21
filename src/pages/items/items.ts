@@ -83,9 +83,9 @@ export class ItemsPage {
 
   // Iniciar captura de código de barra de usuario.
   getUserByBarcode() {
-    //this.global.reading_status = this.global.READING_USER;
-    //this.startBarcodeReading();
-    this.navCtrl.push(SucursalesesPage);
+    this.global.reading_status = this.global.READING_USER;
+    this.startBarcodeReading();
+    //this.navCtrl.push(SucursalesesPage);
   }
 
   // Ingresar código de usuario manualmente.

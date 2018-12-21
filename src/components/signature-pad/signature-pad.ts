@@ -47,6 +47,7 @@ export class SignaturePadComponent implements AfterViewInit {
   }
 
   canvasResize() {
+    console.log('CANVAS RESIZE');
     let canvas = document.querySelector('canvas');
 
     //this.signaturepad.set('minWidth', 1);
