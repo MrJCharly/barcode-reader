@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { UtilProvider } from "../../providers/util/util";
 import { GlobalProvider } from "../../providers/global/global";
 import { BarcodePage } from '../barcode/barcode';
+import { SucursalesesPage } from '../sucursaleses/sucursaleses';
 
 // Seleccionar ítems para generar un pedido.
 @IonicPage()
@@ -82,8 +83,9 @@ export class ItemsPage {
 
   // Iniciar captura de código de barra de usuario.
   getUserByBarcode() {
-    this.global.reading_status = this.global.READING_USER;
-    this.startBarcodeReading();
+    //this.global.reading_status = this.global.READING_USER;
+    //this.startBarcodeReading();
+    this.navCtrl.push(SucursalesesPage);
   }
 
   // Ingresar código de usuario manualmente.
@@ -97,6 +99,13 @@ export class ItemsPage {
 
     this.global.getUserByCode(code).subscribe((data: any) => {
       this.user = data.response.data.records.User;
+
+      if (!this.user) {
+        this.util.showToast({message: 'Usuario inexistente.'});
+        loader.dismiss();
+        return;
+      }
+
       loader.dismiss();
     }, error => {
       this.util.showToast(error);

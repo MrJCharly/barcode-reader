@@ -52,6 +52,17 @@
     </ion-item>
   </ion-list>
 
-  <!-- -->
+  <!-- Firma de usuario -->
   <draw-signature-pad (onSignatureChange)="onValueChange($event)"></draw-signature-pad>
 </ion-content>
+
+<ion-footer>
+  <button ion-button block color="secondary" icon-start>
+    <ion-icon name="checkmark"></ion-icon>
+    Finalizar
+  </button>
+  <button ion-button block color="danger" icon-start>
+    <ion-icon name="remove-circle"></ion-icon>
+    Cancelar
+  </button>
+</ion-footer>
