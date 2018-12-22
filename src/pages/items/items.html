@@ -52,8 +52,19 @@
     </ion-item>
   </ion-list>
 
-  <!-- Firma de usuario -->
-  <draw-signature-pad (onSignatureChange)="onValueChange($event)"></draw-signature-pad>
+  <!-- Firma de usuario
+    <draw-signature-pad [signature]="signature" (onSignatureChange)="onValueChange($event)"></draw-signature-pad>
+  -->
+  <ion-card>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          <signature-pad [options]="options"></signature-pad>
+        </ion-col>
+      </ion-row>
+      <button ion-button small color="calm" (click)="clear()">Borrar</button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 <ion-footer>

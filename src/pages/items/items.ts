@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UtilProvider } from "../../providers/util/util";
 import { GlobalProvider } from "../../providers/global/global";
 import { BarcodePage } from '../barcode/barcode';
 import { SucursalesesPage } from '../sucursaleses/sucursaleses';
+import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
 // Seleccionar ítems para generar un pedido.
 @IonicPage()
@@ -26,7 +27,15 @@ export class ItemsPage {
     },
     qty: 1
   }];
-  signature = "SIGNATURE";
+  signature;
+  options: Object = {
+    'minWidth': 2,
+    'canvasWidth': 400,
+    'canvasHeight': 200,
+    'penColor': '#666a73'
+  };
+
+  @ViewChild(SignaturePad) signaturepad: SignaturePad;
 
   constructor (
     private navCtrl: NavController,
@@ -35,7 +44,9 @@ export class ItemsPage {
     private global: GlobalProvider,
     private alertCtrl: AlertController) { }
 
-  ionViewDidLoad() { }
+  ionViewDidLoad() {
+    this.canvasResize();
+  }
 
   ionViewDidEnter() {
     this.onAfterBarcodeReading();
@@ -165,5 +176,16 @@ export class ItemsPage {
 
   onValueChange(value) {
     this.signature = value;
+  }
+
+  clear() {
+    this.signaturepad.clear();
+  }
+
+  canvasResize() {
+    let canvas = document.querySelector('canvas');
+
+    this.signaturepad.set('canvasWidth', canvas.offsetWidth);
+    this.signaturepad.set('canvasHeight', canvas.offsetHeight);
   }
 }

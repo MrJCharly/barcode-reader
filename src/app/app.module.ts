@@ -17,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UtilProvider } from '../providers/util/util';
 
 import { SignaturePadModule } from 'angular2-signaturepad';
-import { SignaturePadComponent } from '../components/signature-pad/signature-pad';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @NgModule({
   declarations: [
@@ -26,8 +26,7 @@ import { SignaturePadComponent } from '../components/signature-pad/signature-pad
     LoginPage,
     SucursalesesPage,
     ItemsPage,
-    BarcodePage,
-    SignaturePadComponent
+    BarcodePage
   ],
   imports: [
     BrowserModule,
@@ -42,12 +41,12 @@ import { SignaturePadComponent } from '../components/signature-pad/signature-pad
     LoginPage,
     SucursalesesPage,
     ItemsPage,
-    BarcodePage,
-    SignaturePadComponent
+    BarcodePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
     GlobalProvider,
