@@ -17,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { UtilProvider } from '../providers/util/util';
 
 import { SignaturePadModule } from 'angular2-signaturepad';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @NgModule({
   declarations: [
@@ -46,7 +45,6 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
   providers: [
     StatusBar,
     SplashScreen,
-    ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
     GlobalProvider,

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { GlobalProvider } from "../../providers/global/global";
+import config from '../../config';
 
 @Injectable()
 export class UtilProvider {
@@ -29,12 +30,30 @@ export class UtilProvider {
     return loading;
   }
 
-  showToast(options = {}) {
+  showToast(options = {}, onDismiss = null) {
     let merged_options = {...this.default_toast_options, ...options};
     let toast = this.toastCtrl.create(merged_options);
     toast.present();
 
+    toast.onDidDismiss(() => {
+      if (onDismiss) {
+        onDismiss();
+      }
+    });
+
     return toast;
+  }
+
+  // Mostrar errores en múltiples líneas.
+  showErrorsToast(err) {
+    let message = (err.status != 0) ?
+      err.error.response.errors.map(item => {
+        return item.error;
+      }).join('\n') :
+      config.messages.network_error;
+
+
+    this.showToast({ message: message });
   }
 
   // Ingresar código de usuario manualmente.
@@ -47,6 +66,8 @@ export class UtilProvider {
         placeholder: 'Código de usuario'
       }],
       buttons: [{
+        text: 'Cancelar'
+      }, {
         text: 'Buscar',
         handler: data => {
           if (!data.code) {
@@ -72,6 +93,8 @@ export class UtilProvider {
         placeholder: 'Código de producto'
       }],
       buttons: [{
+        text: 'Cancelar'
+      }, {
         text: 'Ingresar',
         handler: data => {
           if (!data.code) {
@@ -81,12 +104,26 @@ export class UtilProvider {
 
           ctx.getItemByCode(data.code);
         }
-      },{
-        text: 'Cancelar'
       }]
     });
 
     prompt.present();
   }
 
+  // Cancelar pedido.
+  promptCancelSubmit(ctx) {
+    const prompt = this.alertCtrl.create({
+      title: "¿Cancelar pedido?",
+      buttons: [{
+        text: 'No'
+      }, {
+        text: 'Si',
+        handler: () => {
+          ctx.reset();
+        }
+      }]
+    });
+
+    prompt.present();
+  }
 }

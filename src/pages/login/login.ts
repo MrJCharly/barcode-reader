@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, MenuController } from 'ionic-angular';
 import { GlobalProvider } from "../../providers/global/global";
-import { LoadingController, ToastController } from 'ionic-angular';
+import { UtilProvider } from "../../providers/util/util";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SucursalesesPage } from '../sucursaleses/sucursaleses';
 
@@ -15,10 +15,9 @@ export class LoginPage {
 
   constructor (
     public navCtrl: NavController,
-    public navParams: NavParams,
+    public menuCtrl: MenuController,
     public global: GlobalProvider,
-    public loadingCtrl: LoadingController,
-    public toastCtrl: ToastController,
+    public util: UtilProvider,
     public formBuilder: FormBuilder
   ) {
     this.loginForm = this.formBuilder.group({
@@ -27,13 +26,18 @@ export class LoginPage {
     });
   }
 
-  ionViewDidLoad() { }
+  ionViewDidEnter() {
+    this.menuCtrl.swipeEnable(false);
+  }
+
+  ionViewDidLeave() {
+    this.menuCtrl.swipeEnable(true);
+  }
 
   onLogin() {
-    let loading = this.loadingCtrl.create({});
+    let loading = this.util.getLoader();
     let {email, password} = this.loginForm.controls;
 
-    loading.present();
     this.global.login(email.value, password.value).subscribe(data => {
       this.setLoginData(data);
       this.global.loadbranches().subscribe(branches => {
@@ -42,12 +46,11 @@ export class LoginPage {
         this.goToNextPage();
       }, error => {
         loading.dismiss();
-        console.log(error);
+        this.util.showErrorsToast(error);
       });
     }, error => {
       loading.dismiss();
-      console.log(error);
-      this.showLoginFailedMessage();
+      this.util.showErrorsToast(error);
     });
   }
 
@@ -64,18 +67,6 @@ export class LoginPage {
   }
 
   goToNextPage() {
-    this.navCtrl.push(SucursalesesPage);
-  }
-
-  showLoginFailedMessage() {
-    let toast = this.toastCtrl.create({
-      message: 'Credenciales inválidas, intente nuevamente.',
-      duration: 3000,
-      position: 'bottom',
-      showCloseButton: true,
-      closeButtonText: 'Ok'
-    });
-
-    toast.present();
+    this.navCtrl.setRoot(SucursalesesPage);
   }
 }

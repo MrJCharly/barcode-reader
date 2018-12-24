@@ -68,13 +68,37 @@ export class GlobalProvider {
     return this.http.post(url, params);
   }
 
-  // Buscar producto por código.
-  getProductByCode(code) {
-    let url = this.getUrlWithEndpoint('getProductbyCode');
+  // Buscar producto por código y por branch.
+  getProductBranchByCode(code) {
+    let url = this.getUrlWithEndpoint('getProductBranchByCode');
     let params = {code, branch_id: this.curr_branch.id};
     params = this.injectToken(params);
 
     return this.http.post(url, params);
+  }
+
+  // Enviar pedido.
+  stockMovement(movement) {console.log(this.curr_branch);
+    let url = this.getUrlWithEndpoint('stockMovement');
+    let params = {
+      branch_id: this.curr_branch.id,
+      user_id: movement.user.id,
+      signature: movement.signature,
+      products: this.getProductsParam(movement.items)
+    };
+    params = this.injectToken(params);
+
+    return this.http.post(url, params);
+  }
+
+  // Preparar parámetro products usando lista de items.
+  getProductsParam(items) {
+    return items.map(item => {
+      return {
+        id: item.product.id,
+        quantity: item.qty
+      }
+    });
   }
 
   // Inyectar token a un objeto como parámetro.

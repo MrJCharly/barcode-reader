@@ -1,9 +1,9 @@
 <ion-menu [content]="mycontent">
   <ion-content>
     <ion-list>
-      <ion-item>Inicio</ion-item>
-      <ion-item>Cambiar sucursal</ion-item>
-      <ion-item>Cerrar sesión</ion-item>
+      <button ion-item menuClose>Inicio</button>
+      <button ion-item (click)="goToSetBranch()" menuClose>Cambiar sucursal</button>
+      <button ion-item (click)="goToLogin()" menuClose>Cerrar sesión</button>
     </ion-list>
   </ion-content>
 </ion-menu>

@@ -1,32 +1,36 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { LoginPage } from '../pages/login/login';
+import { SucursalesesPage } from '../pages/sucursaleses/sucursaleses';
 
 @Component({
-  templateUrl: 'app.html',
-  providers: [ ScreenOrientation ]
+  templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild('mycontent') nav: NavController
   rootPage:any = LoginPage;
 
   constructor (
     platform: Platform,
     statusBar: StatusBar,
-    splashScreen: SplashScreen,
-    screenOrientation: ScreenOrientation) {
+    splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      if (!(platform.is('core') || platform.is('mobileweb'))) {
-        screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
-      }
-
       statusBar.styleDefault();
       splashScreen.hide();
     });
   }
+
+  goToLogin() {
+    this.nav.setRoot(LoginPage);
+  }
+
+  goToSetBranch() {
+    this.nav.setRoot(SucursalesesPage);
+  }
+
 }

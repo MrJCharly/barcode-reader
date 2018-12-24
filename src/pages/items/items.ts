@@ -1,9 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { UtilProvider } from "../../providers/util/util";
 import { GlobalProvider } from "../../providers/global/global";
 import { BarcodePage } from '../barcode/barcode';
-import { SucursalesesPage } from '../sucursaleses/sucursaleses';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
 // Seleccionar ítems para generar un pedido.
@@ -14,20 +13,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 })
 export class ItemsPage {
   user = null;
-  items = [{
-    product: {
-      id: 1,
-      name: 'Casco'
-    },
-    qty: 1
-  }, {
-    product: {
-      id: 1,
-      name: 'Guantes'
-    },
-    qty: 1
-  }];
-  signature;
+  items = [];
   options: Object = {
     'minWidth': 2,
     'canvasWidth': 400,
@@ -36,13 +22,13 @@ export class ItemsPage {
   };
 
   @ViewChild(SignaturePad) signaturepad: SignaturePad;
+  @ViewChild(Content) content: Content;
 
   constructor (
     private navCtrl: NavController,
     private navParams: NavParams,
     private util: UtilProvider,
-    private global: GlobalProvider,
-    private alertCtrl: AlertController) { }
+    private global: GlobalProvider) { }
 
   ionViewDidLoad() {
     this.canvasResize();
@@ -119,7 +105,7 @@ export class ItemsPage {
 
       loader.dismiss();
     }, error => {
-      this.util.showToast(error);
+      this.util.showErrorsToast(error);
       loader.dismiss();
     });
   }
@@ -139,14 +125,8 @@ export class ItemsPage {
   getItemByCode(code) {
     let loader = this.util.getLoader();
 
-    this.global.getProductByCode(code).subscribe((data: any) => {
+    this.global.getProductBranchByCode(code).subscribe((data: any) => {
       let product = data.response.data.records.Product;
-
-      if (!product) {
-        this.util.showToast({message: 'Producto inexistente.'});
-        loader.dismiss();
-        return;
-      }
 
       this.items.push({
         product,
@@ -155,7 +135,7 @@ export class ItemsPage {
       console.log(data);
       loader.dismiss();
     }, error => {
-      this.util.showToast(error);
+      this.util.showErrorsToast(error);
       loader.dismiss();
     });
   }
@@ -174,10 +154,7 @@ export class ItemsPage {
     this.navCtrl.push(BarcodePage);
   }
 
-  onValueChange(value) {
-    this.signature = value;
-  }
-
+  // Limpiar firma.
   clear() {
     this.signaturepad.clear();
   }
@@ -187,5 +164,53 @@ export class ItemsPage {
 
     this.signaturepad.set('canvasWidth', canvas.offsetWidth);
     this.signaturepad.set('canvasHeight', canvas.offsetHeight);
+  }
+
+  isFormValid() {
+    return (this.user && this.user.id > 0) &&
+      (this.items.length > 0) &&
+      (!this.signaturepad.isEmpty());
+  }
+
+  canCancel() {
+    return (this.user && this.user.id > 0) ||
+      (this.items.length > 0) ||
+      (!this.signaturepad.isEmpty());
+  }
+
+  // Enviar pedido.
+  onSubmit() {
+    let loader = this.util.getLoader();
+    let params = {
+      user: this.user,
+      items: this.items,
+      signature: this.signaturepad.toDataURL()
+    };
+
+    this.global.stockMovement(params).subscribe(data => {
+      // Informar pedido eviado correctamente.
+      let toast = this.util.showToast({
+        message: 'Pedido recibido.'
+      }, () => {
+        this.reset();
+        loader.dismiss();
+      });
+    }, error => {
+      loader.dismiss();
+      this.util.showErrorsToast(error);
+    });
+  }
+
+  // Cancelar pedido.
+  onCancel() {
+    this.util.promptCancelSubmit(this);
+  }
+
+  // Resetear campos.
+  reset() {
+    this.user = null;
+    this.items = [];
+    this.clear();
+    this.content.scrollToTop();
   }
 }
