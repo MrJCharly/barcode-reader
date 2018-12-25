@@ -25,3 +25,7 @@
   padding: 0 15px 5px 15px !important;
   margin-bottom: 5px;
 }
+
+.bordered {
+  border-bottom: 2px $background-color solid !important;
+}
