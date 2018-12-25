@@ -1,1 +1,11 @@
-$toolbar-background: #4a8bfc;
+$background-color: #E1E2E1;
+$colors: (
+  primary:          #0d47a1,
+  secondary:        #bbdefb,
+  danger:           #f53d3d,
+  light:            #f4f4f4,
+  dark:             #222,
+  light-background: #eee
+);
+
+$toolbar-background: color($colors, 'primary');

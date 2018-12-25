@@ -1,12 +1,15 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle start>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Sucursales</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of global.branches" (click)="onSelectBranch(item)">
+    <button ion-item color="primary" *ngFor="let item of global.branches" (click)="onSelectBranch(item)">
       <ion-label>{{item.Branch.name}}</ion-label>
     </button>
   </ion-list>

@@ -17,4 +17,11 @@
 
 .validator-error {
   color: red;
+  margin-bottom: 5px;
+}
+
+.item-input {
+  background-color: color($colors, 'light-background');
+  padding: 0 15px 5px 15px !important;
+  margin-bottom: 5px;
 }

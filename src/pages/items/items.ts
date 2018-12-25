@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
+import { IonicPage, NavController, Content } from 'ionic-angular';
 import { UtilProvider } from "../../providers/util/util";
 import { GlobalProvider } from "../../providers/global/global";
 import { BarcodePage } from '../barcode/barcode';
@@ -26,7 +26,6 @@ export class ItemsPage {
 
   constructor (
     private navCtrl: NavController,
-    private navParams: NavParams,
     private util: UtilProvider,
     private global: GlobalProvider) { }
 

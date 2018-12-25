@@ -1,13 +1,16 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Preparar pedido
-    </ion-title>
+  <ion-navbar hideBackButton>
+    <button ion-button menuToggle start>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Preparar pedido</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>{{global.curr_branch.name}}</h3>
+  <ion-card>
+    <ion-card-header>{{global.curr_branch.name}}</ion-card-header>
+  </ion-card>
 
   <br/>
   <button ion-button block (click)="getUserByBarcode()">Identificar Usuario</button>

@@ -1,27 +1,26 @@
 <ion-content padding>
-  <ion-list inset>
-    <form [formGroup] = "loginForm">
-      <!-- Usuario -->
-      <ion-item>
-        <ion-label color="primary" stacked>Usuario</ion-label>
-        <ion-input [formControl] = "loginForm.controls['email']" type="email" placeholder="Ingrese su usuario"></ion-input>
-      </ion-item>
+  <form [formGroup] = "loginForm">
+    <!-- Usuario -->
+    <ion-item>
+      <ion-label color="primary" stacked>Usuario</ion-label>
+      <ion-input [formControl] = "loginForm.controls['email']" type="email" placeholder="Ingrese su usuario"></ion-input>
+    </ion-item>
 
-      <div *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty" class="validator-error">
-        Ingresar email válido.
-      </div>
+    <div *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty" class="validator-error">
+      Ingresar email válido.
+    </div>
 
-      <!-- Password -->
-      <ion-item>
-        <ion-label color="primary" stacked>Contraseña</ion-label>
-        <ion-input [formControl] = "loginForm.controls['password']" type="password" placeholder="Ingrese su constraseña"></ion-input>
-      </ion-item>
+    <!-- Password -->
+    <ion-item>
+      <ion-label color="primary" stacked>Contraseña</ion-label>
+      <ion-input [formControl] = "loginForm.controls['password']" type="password" placeholder="Ingrese su constraseña"></ion-input>
+    </ion-item>
 
-      <div *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty" class="validator-error">
-        Ingresar password.
-      </div>
-    </form>
-  </ion-list>
+    <div *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty" class="validator-error">
+      Ingresar password.
+    </div>
+  </form>
 
+  <br/>
   <button ion-button block [disabled]="!loginForm.valid" (tap) = "onLogin()">Acceder</button>
 </ion-content>

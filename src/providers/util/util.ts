@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { LoadingController, ToastController, AlertController } from 'ionic-angular';
-import { GlobalProvider } from "../../providers/global/global";
 import config from '../../config';
 
 @Injectable()
@@ -19,7 +18,6 @@ export class UtilProvider {
   constructor (
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private global: GlobalProvider,
     private alertCtrl: AlertController) { }
 
   getLoader(options = {}) {
@@ -95,7 +93,7 @@ export class UtilProvider {
       buttons: [{
         text: 'Cancelar'
       }, {
-        text: 'Ingresar',
+        text: 'Buscar',
         handler: data => {
           if (!data.code) {
             this.showToast({message: 'Ingresar un código de producto.'});
