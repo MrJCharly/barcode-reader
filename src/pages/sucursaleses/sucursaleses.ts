@@ -23,4 +23,13 @@ export class SucursalesesPage {
     this.global.curr_branch = item.Branch;
     this.navCtrl.push(ItemsPage);
   }
+
+  // True si item es el branch actualmente seleccionado.
+  isCurrentBranch(item) {
+    if (!this.global.curr_branch) {
+      return false;
+    }
+
+    return this.global.curr_branch.id == item.Branch.id;
+  }
 }
