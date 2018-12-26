@@ -80,13 +80,13 @@
 
 <ion-footer>
   <ion-row>
-    <button ion-button block color="secondary" icon-start [disabled]="!isFormValid()" (click)="onSubmit()">
-      <ion-icon name="checkmark"></ion-icon>
-      Finalizar
+    <button ion-button block color="secondary" [disabled]="!isFormValid()" (click)="onSubmit()">
+      <ion-icon name="checkmark" icon-start></ion-icon>
+      <ion-label>Finalizar</ion-label>
     </button>
-    <button ion-button block color="danger" icon-start [disabled]="!canCancel()" (click)="onCancel()">
-      <ion-icon name="remove-circle"></ion-icon>
-      Cancelar
+    <button ion-button block color="danger" [disabled]="!canCancel()" (click)="onCancel()">
+      <ion-icon name="remove-circle" icon-start></ion-icon>
+      <ion-label>Cancelar</ion-label>
     </button>
   </ion-row>
 </ion-footer>
