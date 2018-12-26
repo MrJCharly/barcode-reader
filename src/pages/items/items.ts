@@ -127,15 +127,30 @@ export class ItemsPage {
     this.global.getProductBranchByCode(code).subscribe((data: any) => {
       let product = data.response.data.records.Product;
 
-      this.items.push({
-        product,
-        qty: 1
-      });
+      this.addItem(product);
+
       console.log(data);
       loader.dismiss();
     }, error => {
       this.util.showErrorsToast(error);
       loader.dismiss();
+    });
+  }
+
+  // Agregar item a la lista, considerando items repetidos.
+  addItem(product) {
+    let item = this.items.find((item) => (item.product.id == product.id));
+
+    // Si el item existe en la lista, incrementar la cantidad.
+    if (item) {
+      ++item.qty;
+      return;
+    }
+
+    // Agregar item a la lista.
+    this.items.push({
+      product,
+      qty: 1
     });
   }
 
